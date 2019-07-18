@@ -6,8 +6,8 @@ Module Module1
     Sub Main()
         Dim width = 100
         Dim length = 100
-        Dim types = 4
-        Dim fileLoc = $"C:\test\RW\{width}x{length}_{types}.txt"
+        Dim types = 5
+        Dim fileLoc = $"C:\test\RW\animationfile\{width}x{length}_{types}.txt"
 
         Dim newWorld = New World(width, length, types)
         Dim walker = New Walker(0, 0, 1, newWorld)
@@ -19,10 +19,10 @@ Module Module1
         'newWorld.PrintCoordinate()
         WriteFile(newWorld, walker, fileLoc)
         Dim renderer = New Renderer(width, length, types, fileLoc)
-        renderer.RenderImage($"C:\test\RW\PathFinder\sample\{width}x{length}_{types}_map.jpg")
+        renderer.RenderImage($"C:\test\RW\animationfile\{width}x{length}_{types}_map.jpg")
         Console.WriteLine("Done Rendering")
         ''Walker Path Recorder
-        newWorld.WPR.WriteToFile($"C:\test\RW\PathFinder\sample\{width}x{length}_{types}_WalkerPath.txt")
+        newWorld.WPR.WriteToFile($"C:\test\RW\animationfile\{width}x{length}_{types}_WalkerPath.txt")
         Console.WriteLine($"Jump Number: {walker.JumpNum}")
         Console.WriteLine($"Efficiency = {newWorld.WPR.CalDistance() / (width * length - 1)} times more")
         Console.ReadKey()

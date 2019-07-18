@@ -64,15 +64,21 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RenderJPG">
-      <HintPath>..\..\RenderJPG\RenderJPG\bin\Debug\RenderJPG.dll</HintPath>
+    <Reference Include="PathFinderLibrary">
+      <HintPath>.\PathFinderLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="RndNorm">
-      <HintPath>..\..\RndNorm\RndNorm\bin\Debug\RndNorm.dll</HintPath>
+    <Reference Include="RenderJPG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RenderJPG.dll</HintPath>
+    </Reference>
+    <Reference Include="RndNorm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RndNorm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,6 +95,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.vb" />
     <Compile Include="Exporter.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

@@ -4,7 +4,7 @@ Public Class WalkerPathRecorder
     Public X
     Public Y
     Public Distance As Double = 0
-    Public Coordinate()() As Integer
+    Shared Coordinate()() As Integer
     Public Que As Queue
     Public Sub New(ByVal Width As Integer)
         Que = New Queue()

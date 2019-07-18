@@ -1,5 +1,7 @@
 ﻿Imports RndNorm
 Imports System.IO
+Imports PathFinderLibrary
+
 ' Walker
 'Direction:
 ' NW = 1
@@ -26,6 +28,7 @@ Public Class Walker
     Private OrderDirR As Boolean = True
     Private OrderNextLine As Boolean = False
     Private rndNorm As RndNormGen
+    Private Animator As Animation
     Public Sub New(ByVal _x As Integer, ByVal _y As Integer, ByVal _dir As Integer, ByRef _world As World)
         X = _x
         Y = _y
@@ -36,6 +39,7 @@ Public Class Walker
         rnd = New Random()
         totalNumDie = (KnowledgeWorld.Width * KnowledgeWorld.Height)
         rndNorm = New RndNormGen(typeIndex + 1, 2, totalNumDie)
+        Animator = New Animation(KnowledgeWorld.Width, KnowledgeWorld.Height, typeIndex + 1, KnowledgeWorld, 50)
     End Sub
     Public Sub RandomXY()
         Dim rndX = rnd.Next(KnowledgeWorld.Width)
@@ -61,7 +65,7 @@ Public Class Walker
 
     Public Sub MapFill()
         Dim pathFind = New PathFinder(KnowledgeWorld.Width, KnowledgeWorld.Height)
-        pathFind.ReadFile($"C:\test\RW\PathFinder\sample\{KnowledgeWorld.Width}x{KnowledgeWorld.Height}_{KnowledgeWorld.Types}.txt")
+        pathFind.ReadFile($"C:\test\RW\animationfile\{KnowledgeWorld.Width}x{KnowledgeWorld.Height}_{KnowledgeWorld.Types}.txt")
         pathFind.CreateBinList()
         pathFind.GetCoordinateFromFile()
 
@@ -83,6 +87,7 @@ Public Class Walker
                 For y As Integer = 0 To KnowledgeWorld.Height - 1
                     ChangeWorldWithMap(pathFind, i)
                     MoveToNext()
+                    Animator.RenderFrame($"C:\test\RW\Animation\{i},{x},{y}.jpg", KnowledgeWorld.Coordinate)
                 Next
             Next
         Next
@@ -402,93 +407,5 @@ Public Class Walker
         Temperature = 10 * KnowledgeWorld.CurReserveTotal / totalNumDie
     End Sub
 
-
-    Private Class PathFinder
-        Private Coordinate()() As Integer
-        Private charArray() As Char
-        Private s As String = vbCrLf
-        Private tempArray() As Char = s.ToCharArray
-        Private NewLineChar1 As Char = tempArray(0)
-        Private binList() As Integer
-        Private Width As Integer
-        Private Length As Integer
-
-        Public Sub New(_width As Integer, _length As Integer)
-            Width = _width
-            Length = _length
-            binList = New Integer(Width * Length) {}
-            Coordinate = New Integer(_width)() {}
-
-            For w As Integer = 0 To _width
-                Coordinate(w) = New Integer(_length) {}
-            Next
-
-        End Sub
-
-        Public ReadOnly Property GetCoordinate(_x As Integer, _y As Integer) As Integer
-            Get
-                Return Coordinate(_x)(_y)
-            End Get
-        End Property
-
-        Public Sub CreateBinList()
-            Dim binCounter As Integer = 0
-            'Dim nonNewLineCounter As Integer = 0
-            For i As Integer = 0 To charArray.Count - 1
-
-                If charArray(i) = NewLineChar1 Then  '' If charArray(i) = new line char
-                    Dim int As Integer
-                    If charArray(i - 2) = "," Then
-                        int = Convert.ToInt32(charArray(i - 1).ToString)
-                    ElseIf charArray(i - 3) = "," Then
-                        int = Convert.ToInt32(charArray(i - 2).ToString) * 10 + Convert.ToInt32(charArray(i - 1).ToString)
-                    ElseIf charArray(i - 4) = "," Then
-                        int = Convert.ToInt32(charArray(i - 3).ToString) * 100 + Convert.ToInt32(charArray(i - 2).ToString) * 10 + Convert.ToInt32(charArray(i - 1).ToString)
-                    Else
-                        int = 0
-                    End If
-                    binList(binCounter) = int
-                    binCounter += 1
-                    'ElseIf charArray(i) = NewLineChar2 Then
-
-                Else
-                    'Console.WriteLine(charArray(i))
-                    'nonNewLineCounter += 1
-                End If
-                If i > 0 Then
-                    'Console.WriteLine($"charArray({i}) = {charArray(i)}? -> binList({binCounter}) = {charArray(i - 1)}")
-                End If
-            Next
-        End Sub
-
-        Public Sub ReadFile(fileLoc As String)
-            Dim fileReader As String
-            fileReader = My.Computer.FileSystem.ReadAllText(fileLoc)
-            charArray = fileReader.ToCharArray()
-        End Sub
-
-        Public Sub GetCoordinateFromFile()
-            Dim binCounter As Integer = 0
-
-            For x As Integer = 0 To Width - 1
-                For y As Integer = 0 To Length - 1
-                    Coordinate(x)(y) = binList(binCounter)
-                    binCounter = binCounter + 1
-                Next
-            Next
-        End Sub
-
-        Public Sub WriteToFile(fileLoc As String)
-            Using writer As StreamWriter = New StreamWriter(fileLoc)
-                Dim binCounter = 0
-                For i As Integer = 0 To Width - 1
-                    For j As Integer = 0 To Length - 1
-                        writer.WriteLine($"{i + 1},{j + 1},1, {binList(binCounter)}")
-                        binCounter += 1
-                    Next
-                Next
-            End Using
-        End Sub
-    End Class
 
 End Class
