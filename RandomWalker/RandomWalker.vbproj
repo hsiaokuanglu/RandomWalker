@@ -64,11 +64,16 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RenderJPG">
-      <HintPath>..\..\RenderJPG\RenderJPG\bin\Debug\RenderJPG.dll</HintPath>
+    <Reference Include="PathFinderLibrary">
+      <HintPath>.\PathFinderLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="RndNorm">
-      <HintPath>..\..\RndNorm\RndNorm\bin\Debug\RndNorm.dll</HintPath>
+    <Reference Include="RenderJPG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RenderJPG.dll</HintPath>
+    </Reference>
+    <Reference Include="RndNorm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RndNorm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
