@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E73EB8EB-BF34-4C1B-9955-9A93D9543DD7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>ConsoleApp3.Module1</StartupObject>
+    <StartupObject>ConsoleApp3.UI</StartupObject>
     <RootNamespace>ConsoleApp3</RootNamespace>
     <AssemblyName>RandomWalker</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -64,20 +64,17 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PathFinderLibrary">
-      <HintPath>.\PathFinderLibrary.dll</HintPath>
+    <Reference Include="RenderJPG">
+      <HintPath>..\..\RenderJPG\RenderJPG\bin\Debug\RenderJPG.dll</HintPath>
     </Reference>
-    <Reference Include="RenderJPG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\RenderJPG.dll</HintPath>
-    </Reference>
-    <Reference Include="RndNorm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\RndNorm.dll</HintPath>
+    <Reference Include="RndNorm">
+      <HintPath>..\..\RndNorm\RndNorm\bin\Debug\RndNorm.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -94,6 +91,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.vb" />
     <Compile Include="Exporter.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -112,6 +110,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Reserve.vb" />
+    <Compile Include="UI.Designer.vb">
+      <DependentUpon>UI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Walker.vb" />
     <Compile Include="WalkerPathRecorder.vb" />
     <Compile Include="World.vb" />
@@ -122,6 +126,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI.resx">
+      <DependentUpon>UI.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

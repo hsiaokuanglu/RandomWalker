@@ -1,6 +1,5 @@
-﻿Imports RndNorm
-Imports System.IO
-Imports PathFinderLibrary
+﻿Imports PathFinderLibrary
+Imports RndNorm
 
 ' Walker
 'Direction:
@@ -28,6 +27,10 @@ Public Class Walker
     Private OrderDirR As Boolean = True
     Private OrderNextLine As Boolean = False
     Private rndNorm As RndNormGen
+    Private Animator As Animation
+    Private InFile As String
+    Private FrameFolder As String
+
     Public Sub New(ByVal _x As Integer, ByVal _y As Integer, ByVal _dir As Integer, ByRef _world As World)
         X = _x
         Y = _y
@@ -38,6 +41,7 @@ Public Class Walker
         rnd = New Random()
         totalNumDie = (KnowledgeWorld.Width * KnowledgeWorld.Height)
         rndNorm = New RndNormGen(typeIndex + 1, 2, totalNumDie)
+        Animator = New Animation(KnowledgeWorld.Width, KnowledgeWorld.Height, typeIndex + 1, KnowledgeWorld, (KnowledgeWorld.Width * KnowledgeWorld.Height * KnowledgeWorld.Types) / 200)
     End Sub
     Public Sub RandomXY()
         Dim rndX = rnd.Next(KnowledgeWorld.Width)
@@ -52,6 +56,13 @@ Public Class Walker
         Direction = rndDir
         'Console.WriteLine($"{rndDir}")
     End Sub
+    Public Sub SetInFile(file As String)
+        InFile = file
+    End Sub
+
+    Public Sub SetFrameFolder(folder As String)
+        FrameFolder = folder
+    End Sub
 
     Public Sub RandomRePosition()
         If rnd.Next(KnowledgeWorld.CurReserveTotal) < 400 Then
@@ -63,7 +74,7 @@ Public Class Walker
 
     Public Sub MapFill()
         Dim pathFind = New PathFinder(KnowledgeWorld.Width, KnowledgeWorld.Height)
-        pathFind.ReadFile($"C:\test\RW\PathFinder\sample\{KnowledgeWorld.Width}x{KnowledgeWorld.Height}_{KnowledgeWorld.Types}.txt")
+        pathFind.ReadFile(InFile)
         pathFind.CreateBinList()
         pathFind.GetCoordinateFromFile()
 
@@ -88,6 +99,40 @@ Public Class Walker
                 Next
             Next
         Next
+
+
+    End Sub
+
+    Public Sub MapFillnAnimate()
+        Dim pathFind = New PathFinder(KnowledgeWorld.Width, KnowledgeWorld.Height)
+        pathFind.ReadFile(InFile)
+        pathFind.CreateBinList()
+        pathFind.GetCoordinateFromFile()
+
+        'For x As Integer = 0 To KnowledgeWorld.Width - 1
+        '    For y As Integer = 0 To KnowledgeWorld.Height - 1
+        '        Me.X = x
+        '        Me.Y = y
+        '        Dim selection = pathFind.GetCoordinate(x, y) - 1
+        '        KnowledgeWorld.SetType(x, y, selection + 1)
+        '        UpdateWorld(selection)
+        '    Next
+        'Next
+
+        For i As Integer = 0 To typeIndex
+            X = 0
+            Y = 0
+            OrderDirR = True
+            For x As Integer = 0 To KnowledgeWorld.Width - 1
+                For y As Integer = 0 To KnowledgeWorld.Height - 1
+                    ChangeWorldWithMap(pathFind, i)
+                    MoveToNext()
+                    Animator.RenderFrame($"{FrameFolder}\{i}_{x}_{y}.jpg", KnowledgeWorld.Coordinate)
+                Next
+            Next
+        Next
+
+
     End Sub
     Private Sub ChangeWorldWithMap(ByRef pfinder As PathFinder, curTypeIndex As Integer)
         Dim selection = pfinder.GetCoordinate(X, Y) - 1
