@@ -16,7 +16,7 @@ Module Module1
 
         'walker.RandomFill()
         'walker.OrderFill()
-        walker.MapFill()
+        walker.MapFillnAnimate()
         newWorld.PrintReserve()
         'newWorld.PrintCoordinate()
         WriteFile(newWorld, walker, fileLoc)

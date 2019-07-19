@@ -24,7 +24,6 @@ Partial Class UI
     Private Sub InitializeComponent()
         Me.dataLoc_textBox = New System.Windows.Forms.TextBox()
         Me.Generate_button = New System.Windows.Forms.Button()
-        Me.Animate_button = New System.Windows.Forms.Button()
         Me.dataLoc_label = New System.Windows.Forms.Label()
         Me.outputLoc_label = New System.Windows.Forms.Label()
         Me.outputLoc_text = New System.Windows.Forms.TextBox()
@@ -39,6 +38,7 @@ Partial Class UI
         Me.Label5 = New System.Windows.Forms.Label()
         Me.tbb = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'dataLoc_textBox
@@ -53,22 +53,12 @@ Partial Class UI
         'Generate_button
         '
         Me.Generate_button.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Generate_button.Location = New System.Drawing.Point(360, 346)
+        Me.Generate_button.Location = New System.Drawing.Point(532, 346)
         Me.Generate_button.Name = "Generate_button"
         Me.Generate_button.Size = New System.Drawing.Size(151, 52)
         Me.Generate_button.TabIndex = 1
         Me.Generate_button.Text = "Generate"
         Me.Generate_button.UseVisualStyleBackColor = True
-        '
-        'Animate_button
-        '
-        Me.Animate_button.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Animate_button.Location = New System.Drawing.Point(562, 346)
-        Me.Animate_button.Name = "Animate_button"
-        Me.Animate_button.Size = New System.Drawing.Size(142, 52)
-        Me.Animate_button.TabIndex = 2
-        Me.Animate_button.Text = "Animate"
-        Me.Animate_button.UseVisualStyleBackColor = True
         '
         'dataLoc_label
         '
@@ -194,11 +184,22 @@ Partial Class UI
         Me.Button1.Text = "Set File Loc"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(17, 316)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(122, 29)
+        Me.CheckBox1.TabIndex = 18
+        Me.CheckBox1.Text = "Animate"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'UI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.tbb)
@@ -213,7 +214,6 @@ Partial Class UI
         Me.Controls.Add(Me.outputLoc_label)
         Me.Controls.Add(Me.outputLoc_text)
         Me.Controls.Add(Me.dataLoc_label)
-        Me.Controls.Add(Me.Animate_button)
         Me.Controls.Add(Me.Generate_button)
         Me.Controls.Add(Me.dataLoc_textBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -226,7 +226,6 @@ Partial Class UI
 
     Friend WithEvents dataLoc_textBox As Windows.Forms.TextBox
     Friend WithEvents Generate_button As Windows.Forms.Button
-    Friend WithEvents Animate_button As Windows.Forms.Button
     Friend WithEvents dataLoc_label As Windows.Forms.Label
     Friend WithEvents outputLoc_label As Windows.Forms.Label
     Friend WithEvents outputLoc_text As Windows.Forms.TextBox
@@ -241,4 +240,5 @@ Partial Class UI
     Friend WithEvents Label5 As Windows.Forms.Label
     Friend WithEvents tbb As Windows.Forms.TextBox
     Friend WithEvents Button1 As Windows.Forms.Button
+    Friend WithEvents CheckBox1 As Windows.Forms.CheckBox
 End Class
