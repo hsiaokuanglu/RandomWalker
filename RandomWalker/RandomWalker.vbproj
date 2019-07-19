@@ -64,6 +64,10 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PathFinderLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\PathFinderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="RenderJPG">
       <HintPath>..\..\RenderJPG\RenderJPG\bin\Debug\RenderJPG.dll</HintPath>
     </Reference>
