@@ -39,7 +39,7 @@ Public Class Walker
         rnd = New Random()
         totalNumDie = (KnowledgeWorld.Width * KnowledgeWorld.Height)
         rndNorm = New RndNormGen(typeIndex + 1, 2, totalNumDie)
-        Animator = New Animation(KnowledgeWorld.Width, KnowledgeWorld.Height, typeIndex + 1, KnowledgeWorld, 50)
+        Animator = New Animation(KnowledgeWorld.Width, KnowledgeWorld.Height, typeIndex + 1, KnowledgeWorld, (KnowledgeWorld.Width * KnowledgeWorld.Height * KnowledgeWorld.Types) / 200)
     End Sub
     Public Sub RandomXY()
         Dim rndX = rnd.Next(KnowledgeWorld.Width)

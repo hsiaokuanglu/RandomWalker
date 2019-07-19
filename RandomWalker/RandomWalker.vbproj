@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E73EB8EB-BF34-4C1B-9955-9A93D9543DD7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>ConsoleApp3.Module1</StartupObject>
+    <StartupObject>ConsoleApp3.UI</StartupObject>
     <RootNamespace>ConsoleApp3</RootNamespace>
     <AssemblyName>RandomWalker</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -67,6 +67,9 @@
     <Reference Include="PathFinderLibrary">
       <HintPath>.\PathFinderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="RandomizedAry">
+      <HintPath>..\..\RandomizedAry\RandomizedAry\bin\Debug\RandomizedAry.dll</HintPath>
+    </Reference>
     <Reference Include="RenderJPG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\RenderJPG.dll</HintPath>
@@ -79,6 +82,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -114,6 +118,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Reserve.vb" />
+    <Compile Include="UI.Designer.vb">
+      <DependentUpon>UI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Walker.vb" />
     <Compile Include="WalkerPathRecorder.vb" />
     <Compile Include="World.vb" />
@@ -124,6 +134,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI.resx">
+      <DependentUpon>UI.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

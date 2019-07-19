@@ -1,9 +1,11 @@
 ﻿Imports System.IO
 Imports RenderJPG
+Imports System.Windows.Forms
 
 Module Module1
 
     Sub Main()
+
         Dim width = 100
         Dim length = 100
         Dim types = 5
