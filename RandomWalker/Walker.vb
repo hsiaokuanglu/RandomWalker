@@ -1,16 +1,16 @@
 ﻿Imports PathFinderLibrary
-Imports RndNorm
+'Imports RndNorm
 
-' Walker
-'Direction:
-' NW = 1
-' N  = 2
-' NW = 3
-' E  = 4
-' SE = 5
-' S  = 6
-' SW = 7
-' W  = 8
+'' Walker
+''Direction:
+'' NW = 1
+'' N  = 2
+'' NW = 3
+'' E  = 4
+'' SE = 5
+'' S  = 6
+' 'SW = 7
+' 'W  = 8
 Public Class Walker
     Public X As Integer
     Public Y As Integer
@@ -26,7 +26,7 @@ Public Class Walker
     Private totalNumDie As Integer
     Private OrderDirR As Boolean = True
     Private OrderNextLine As Boolean = False
-    Private rndNorm As RndNormGen
+    'Private rndNorm As RndNormGen
     Private Animator As Animation
     Private InFile As String
     Private FrameFolder As String
@@ -40,7 +40,7 @@ Public Class Walker
         typeIndex = KnowledgeWorld.Types - 1
         rnd = New Random()
         totalNumDie = (KnowledgeWorld.Width * KnowledgeWorld.Height)
-        rndNorm = New RndNormGen(typeIndex + 1, 2, totalNumDie)
+        'rndNorm = New RndNormGen(typeIndex + 1, 2, totalNumDie)
         Animator = New Animation(KnowledgeWorld.Width, KnowledgeWorld.Height, typeIndex + 1, KnowledgeWorld, (KnowledgeWorld.Width * KnowledgeWorld.Height * KnowledgeWorld.Types) / 200)
     End Sub
     Public Sub RandomXY()
@@ -78,16 +78,6 @@ Public Class Walker
         pathFind.CreateBinList()
         pathFind.GetCoordinateFromFile()
 
-        'For x As Integer = 0 To KnowledgeWorld.Width - 1
-        '    For y As Integer = 0 To KnowledgeWorld.Height - 1
-        '        Me.X = x
-        '        Me.Y = y
-        '        Dim selection = pathFind.GetCoordinate(x, y) - 1
-        '        KnowledgeWorld.SetType(x, y, selection + 1)
-        '        UpdateWorld(selection)
-        '    Next
-        'Next
-
         For i As Integer = 0 To typeIndex
             X = 0
             Y = 0
@@ -108,16 +98,6 @@ Public Class Walker
         pathFind.ReadFile(InFile)
         pathFind.CreateBinList()
         pathFind.GetCoordinateFromFile()
-
-        'For x As Integer = 0 To KnowledgeWorld.Width - 1
-        '    For y As Integer = 0 To KnowledgeWorld.Height - 1
-        '        Me.X = x
-        '        Me.Y = y
-        '        Dim selection = pathFind.GetCoordinate(x, y) - 1
-        '        KnowledgeWorld.SetType(x, y, selection + 1)
-        '        UpdateWorld(selection)
-        '    Next
-        'Next
 
         For i As Integer = 0 To typeIndex
             X = 0
@@ -168,7 +148,7 @@ Public Class Walker
             X = 0
             Y = 0
             For j As Integer = 0 To KnowledgeWorld.ReserveList(i).Size - 1
-                OrderMove()
+                'OrderMove()
                 ChangeWorldBasedOnLoop(i)
             Next
         Next
@@ -294,34 +274,34 @@ Public Class Walker
     End Sub
 
     'move the walker's x, y position in a orderly manner with random steps
-    Private Sub OrderMove()
-        Dim binReserve = totalNumDie / typeIndex + 1
+    'Private Sub OrderMove()
+    '    Dim binReserve = totalNumDie / typeIndex + 1
 
-        Dim i As Integer = rndNorm.GetRnd()       '' random normal distribution mean = types, stdDev = 1, samplesize = totalnumdie
-        If i <= 0 Then                            '' prevents negative steps
-            i = 1
-        End If
-        Steps = i
-        Dim stepOverFlowR As Integer = X + Steps
-        Dim stepOverFlowL As Integer = X - Steps
+    '    Dim i As Integer = rndNorm.GetRnd()       '' random normal distribution mean = types, stdDev = 1, samplesize = totalnumdie
+    '    If i <= 0 Then                            '' prevents negative steps
+    '        i = 1
+    '    End If
+    '    Steps = i
+    '    Dim stepOverFlowR As Integer = X + Steps
+    '    Dim stepOverFlowL As Integer = X - Steps
 
-        If stepOverFlowR > (KnowledgeWorld.Width - 1) And OrderDirR And (Y < KnowledgeWorld.Height - 1) Then
-            Y += 1
-            X = (KnowledgeWorld.Width - 1) - (stepOverFlowR - KnowledgeWorld.Width - 1) - 1
-            OrderDirR = False
-        ElseIf stepOverFlowL < 0 And Not (OrderDirR) And (Y < KnowledgeWorld.Height - 1) Then
-            Y += 1
-            X = -(stepOverFlowL + 1)
-            OrderDirR = True
-        Else
-            If OrderDirR And X + Steps < KnowledgeWorld.Width - 1 Then
-                X += Steps
-            ElseIf X - Steps >= 0 Then
-                X -= Steps
-            End If
-        End If
-        'Console.WriteLine($"({X}, {Y})")
-    End Sub
+    '    If stepOverFlowR > (KnowledgeWorld.Width - 1) And OrderDirR And (Y < KnowledgeWorld.Height - 1) Then
+    '        Y += 1
+    '        X = (KnowledgeWorld.Width - 1) - (stepOverFlowR - KnowledgeWorld.Width - 1) - 1
+    '        OrderDirR = False
+    '    ElseIf stepOverFlowL < 0 And Not (OrderDirR) And (Y < KnowledgeWorld.Height - 1) Then
+    '        Y += 1
+    '        X = -(stepOverFlowL + 1)
+    '        OrderDirR = True
+    '    Else
+    '        If OrderDirR And X + Steps < KnowledgeWorld.Width - 1 Then
+    '            X += Steps
+    '        ElseIf X - Steps >= 0 Then
+    '            X -= Steps
+    '        End If
+    '    End If
+    '    'Console.WriteLine($"({X}, {Y})")
+    'End Sub
 
     'move the walker's x, y positiion 'steps' unit towards a random direction
     Private Sub RandomMove()

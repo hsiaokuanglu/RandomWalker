@@ -68,6 +68,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\PathFinderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="RandomizedAry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RandomizedAry.dll</HintPath>
+    </Reference>
     <Reference Include="RenderJPG">
       <HintPath>..\..\RenderJPG\RenderJPG\bin\Debug\RenderJPG.dll</HintPath>
     </Reference>

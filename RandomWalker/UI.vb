@@ -50,8 +50,4 @@ Public Class UI
         world.WPR.WriteToFile(TextBox1.Text)
     End Sub
 
-    Private Sub Animate_button_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
 End Class
